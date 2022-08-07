@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { logoutUser } from "../../redux/slices/authSlice";
+import { openAddPostModal } from "../../redux/slices/modalSlice";
 import "./sidebar.css";
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -60,11 +61,21 @@ const Sidebar = () => {
               <label> Profile</label>
               </Link>
             </span>
+             <div>
+              <button className="post-btn cursor-pointer"
+              onClick={()=>dispatch(openAddPostModal())}
+              >
+                <i className="fa fa-plus-circle fa-2x"></i>
+                <label className="padding-right-sm cursor-pointer">
+                  Add Post
+                </label>
+              </button>
+            </div>
           </div>
           {user ? (
-            <div>
+            <div className="flex-row flex-wrap">
               <label className="cursor-pointer mg-left-sm">
-                {user.username}
+                {user.firstName}
               </label>
               <i onClick={logoutHandler} className="fa fa-sign-out fa-2x"></i>
             </div>
@@ -84,6 +95,9 @@ const Sidebar = () => {
         </span>
         <span onClick={()=>navigate("/explore")}>
           <i className="fa fa-bolt fa-2x"></i>
+        </span>
+        <span onClick={()=>dispatch(openAddPostModal())}>
+          <i className="fa fa-plus-circle fa-2x"></i>
         </span>
         <span onClick={()=>navigate("/bookmark")}>
           <i className="fa fa-bookmark fa-2x"></i>

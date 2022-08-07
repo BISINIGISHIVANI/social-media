@@ -1,10 +1,26 @@
 import "./navbar.css";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 const Navbar = () => {
   const { user,token } = useSelector((state) => state.auth);
+  const {users}=useSelector((state)=>state.users)
+  const navigate=useNavigate()
   const [isOpen, setIsOpen] = useState(false);
+  const [filteredData, setFilteredData] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
+   const searchUserHandler = (e, data) => {
+    let text = e.target.value.toLowerCase().trim();
+    let textLength = text.length;
+    let result = data.filter((user) =>
+      user.username.toLowerCase().substring(0, textLength).includes(text)
+    );
+    if (textLength > 0) {
+      result.length > 0
+        ? setFilteredData(result)
+        : setFilteredData([{ id: 0, username: "user not Found" }]);
+    } else setFilteredData([]);
+  };
   const follwerDataToggle = () => {
     setIsOpen((open) => !open);
   };
@@ -28,7 +44,26 @@ const Navbar = () => {
       </div>
       <div className="flex-row gap flex-wrap left-nav">
         <label className="search-bar flex-row">
-          <input type="search" className="search-input" />
+          <div className="position-relative">
+          <input type="search" 
+          className="search-input"
+          placeholder="serach user..."
+          value={searchValue}
+          onChange={(e)=>{
+            searchUserHandler(e,users)
+            setSearchValue(e.target.value)
+          }}
+          />
+          </div>
+          {filteredData.map((findUser)=>findUser.username==="Not Found"?(
+            "no user found"
+          ):(
+            <div key={Math.random()}
+            className="toggle-box mg-top-xl bd-sm bd-radius-sm padding-sm post-card cursor-pointer"
+            onClick={()=>navigate(`/profile/${findUser.username}`)}>
+              {findUser.username}
+            </div>
+          ))}
           <span>
             <i className="fa fa-search search-icon cursor-pointer"></i>
           </span>

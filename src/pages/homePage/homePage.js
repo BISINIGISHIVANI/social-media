@@ -1,4 +1,5 @@
 import { Navbar,Sidebar } from "../../components"
+import "./home.css"
 const HomePage=()=>{
 return (
     <div>
@@ -8,7 +9,7 @@ return (
           <Sidebar />
         </div>
         <section className="flex-row main-content">
-          <section className="bd-sm content flex-col gap">
+          <section className=" content flex-col gap">
             <div className="flex-col gap">
               Home Page
             </div>

@@ -12,8 +12,11 @@ import {
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PrivateRoute } from "./privateRoute";
+import { AddPost, PostModal } from "../components";
+import { useSelector } from "react-redux";
 
 const PublicRoutes = () => {
+  const {showPostModal}=useSelector((state)=>state.modal)
   return (
     <div>
       <Routes>
@@ -54,6 +57,8 @@ const PublicRoutes = () => {
         <Route path="/signup" element={<SignUpPage/>} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
+      {showPostModal && <AddPost/>}
+      <PostModal/>
       <ToastContainer
         position="top-right"
         autoClose={3000}
