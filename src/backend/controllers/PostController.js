@@ -91,7 +91,7 @@ export const createPostHandler = function (schema, request) {
       lastName: user.lastName,
       username: user.username,
       profile: user.profile,
-      createdAt: 2022,
+      createdAt: new Date(),
       updatedAt: formatDate(),
     }
     this.db.posts.insert(post)
