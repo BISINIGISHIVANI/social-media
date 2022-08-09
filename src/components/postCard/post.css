@@ -47,6 +47,7 @@
 .bg-sm {
   background-color: var(--primary-color);
 }
+
 .post-modal-btn {
   margin: 0;
   color: var(--mainWhite);
@@ -93,6 +94,9 @@
   justify-content: center;
   align-items: center;
 }
+.z-12{
+  z-index: 12;
+}
 .post-card {
   background-color: var(--gray);
   font-family: "Courier New", Courier, monospace;
@@ -114,7 +118,7 @@
   margin-left: 2.5rem;
 }
 .width-xl {
-  width: 6rem;
+  width: 5.5rem;
 }
 .btn-secondary {
   border: 1px solid var(--primary-color);
@@ -175,3 +179,4 @@
     width: 100%;
   }
 }
+

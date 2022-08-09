@@ -4,7 +4,7 @@ import { formatDate } from "../utils/authUtils";
  * User Database can be added here.
  * You can add default users of your wish with different attributes
  * */
-import { charle,glif,mlane,zxocde,remy } from "../../assets/avatar";
+import { charle, glif, mlane, zxocde, remy } from "../../assets/avatar";
 export const users = [
   {
     _id: uuid(),
@@ -12,70 +12,64 @@ export const users = [
     lastName: "Tucker",
     username: "Richard",
     password: "us@142",
-    avatar:glif,
-    bio:"",
+    avatar: glif,
+    bio: "",
     createdAt: formatDate(),
-    updatedAt: formatDate(),
-  }
-  ,{
+    updatedAt: formatDate()
+  },
+  {
     _id: uuid(),
     firstName: "Jose",
     lastName: "Bowman",
     username: "happyJose",
     password: "charlie23",
-    avatar:mlane,
-    bio:"",
+    avatar: mlane,
+    bio: "",
     createdAt: formatDate(),
-    updatedAt: formatDate(),
-  },{
+    updatedAt: formatDate()
+  },
+  {
     _id: uuid(),
     firstName: "Roy",
     lastName: "Nelson",
     username: "whereIam",
     password: "nelson45@",
-    avatar:zxocde,
-    bio:"",
+    avatar: zxocde,
+    bio: "",
     createdAt: formatDate(),
-    updatedAt: formatDate(),
-  },{
+    updatedAt: formatDate()
+  },
+  {
     _id: uuid(),
     firstName: "Laura",
     lastName: "Dixon",
     username: "laura98",
     password: "4Kpng@",
-    avatar:charle,
-    bio:"",
+    avatar: charle,
+    bio: "",
     createdAt: formatDate(),
-    updatedAt: formatDate(),
-  },{
+    updatedAt: formatDate()
+  },
+  {
     _id: uuid(),
     firstName: "Henry",
     lastName: "Warren",
     username: "warrenS",
     password: "henry56",
-    avatar:remy,
-    bio:"",
+    avatar: remy,
+    bio: "",
     createdAt: formatDate(),
-    updatedAt: formatDate(),
-  }, {
+    updatedAt: formatDate()
+  },
+  {
     _id: uuid(),
     firstName: "Shivani",
     lastName: "B",
     username: "shivani",
     password: "shivani@12",
     avatar: glif,
-    bio:"learning web",
+    bio: "learning frontend",
     createdAt: formatDate(),
-    updatedAt: formatDate(),
-  },
-  {
-    _id: uuid(),
-    firstName: "Adarsh",
-    lastName: "Balika",
-    username: "adarshbalika",
-    password: "adarshBalika123",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
-  },
+    updatedAt: formatDate()
+  }
 ];
-
