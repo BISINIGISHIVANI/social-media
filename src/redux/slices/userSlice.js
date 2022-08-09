@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import {  getAllUser} from "../asyncThunk/userThunk";
+import {  followUser, getAllUser, unfollowUser} from "../asyncThunk/userThunk";
 const initialState={
     users:[],
     userLoading:false,
@@ -19,7 +19,19 @@ const userSlice=createSlice({
         },
         [getAllUser.rejected]:(state,action)=>{
             state.error=action.payload.error[0]
-        }
+        },
+        [followUser.fulfilled]:(state,action)=>{
+            state.users=action.payload.data.users
+        },
+        [followUser.rejected]:(state,action)=>{
+            state.error=action.payload.error[0]
+        },
+        [unfollowUser.fulfilled]:(state,action)=>{
+            state.error=action.payload.error[0]
+        },
+        [unfollowUser.rejected]:(state,action)=>{
+            state.error=action.payload.error[0]
+        },
     }
 })
 export const {reducer:usersReducer}=userSlice;

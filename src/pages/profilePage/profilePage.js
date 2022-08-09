@@ -1,6 +1,26 @@
-import { Navbar,Sidebar } from "../../components"
-const ProfilePage=()=>{
- return (
+import { Navbar, Sidebar } from "../../components";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { getAllPosts } from "../../redux/asyncThunk/postThunk";
+import { getAllUser } from "../../redux/asyncThunk/userThunk";
+import { PostCard } from "../../components";
+import { ProfileModal } from "../../components/profileModal/profileModal";
+import { SuggestUser } from "../../components/suggestUser/suggestUsers";
+import { ProfileCard } from "../../components/profileCard/profileCard";
+const ProfilePage = () => {
+  const dispatch = useDispatch();
+  const { username } = useParams();
+  const { user } = useSelector((state) => state.auth);
+  const { users } = useSelector((state) => state.users);
+  const { posts } = useSelector((state) => state.posts);
+  const myposts = posts.filter((post) => post.username === username);
+  const otherUsers = users.filter((currUser) => currUser.username === username);
+  useEffect(() => {
+    dispatch(getAllUser());
+    dispatch(getAllPosts());
+  }, [dispatch]);
+  return (
     <div>
       <Navbar />
       <div className="flex-row">
@@ -8,14 +28,65 @@ const ProfilePage=()=>{
           <Sidebar />
         </div>
         <section className="flex-row main-content">
-          <section className="bd-sm content flex-col gap">
+          <section className="content flex-col gap">
+            <div className="bd-radius-sm flex-col flex-center align-center">
+              {otherUsers.map(
+                ({
+                  _id,
+                  avatar,
+                  firstName,
+                  lastName,
+                  followers,
+                  following
+                }) => (
+                  <div key={_id}>
+                    {user.username !== username ? (
+                      <div className="flex-row gap">
+                        <img
+                          className="user-avatar avatar-sm"
+                          src={avatar}
+                          alt="user-avatar"
+                        />
+                        <div>
+                          <h1>
+                            {firstName} {lastName}
+                          </h1>
+                          <p> @{username}</p>
+                        </div>
+                      </div>
+                    ) : (
+                      <ProfileCard />
+                    )}
+                    <div className="flex-row  padding-xl">
+                      <span>Followers {followers?.length} </span>
+                      <div className="flex-row">
+                        <span>
+                          {" "}
+                          | Following {following?.length} | Posts{" "}
+                          {myposts?.length}{" "}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                )
+              )}
+              {user.username === username && <ProfileModal />}
+            </div>
+            <hr />
             <div className="flex-col gap">
-              ProfilePage Page
+              {myposts.length > 0 ? (
+                myposts.map((post) => <PostCard key={post._id} post={post} />)
+              ) : (
+                <h2>No posts yet,start writing posts..</h2>
+              )}
             </div>
           </section>
+          <aside className="padding-edges aside cursor-pointer">
+            <SuggestUser />
+          </aside>
         </section>
-        </div>
+      </div>
     </div>
-)
-}
-export {ProfilePage}
+  );
+};
+export { ProfilePage };

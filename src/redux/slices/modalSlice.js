@@ -1,8 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isOpen: false,
   postToEdit: {},
-  showPostModal:false
+  showPostModal: false,
+  showProfileModal: false
 };
 const modalSlice = createSlice({
   name: "modal",
@@ -18,16 +19,28 @@ const modalSlice = createSlice({
     openEditPost: (state, action) => {
       state.postToEdit = action.payload;
     },
-    openAddPostModal:(state)=>{
-      state.showPostModal=true
+    openAddPostModal: (state) => {
+      state.showPostModal = true;
     },
-    closeAddPostModal:(state)=>{
-      state.showPostModal=false
+    closeAddPostModal: (state) => {
+      state.showPostModal = false;
+    },
+    openProfileModal: (state) => {
+      state.showProfileModal = true;
+    },
+    closeProfileModal: (state) => {
+      state.showProfileModal = false;
     }
-  },
-  extraReducers:{
   }
 });
-export const {openAddPostModal,closeAddPostModal,openModal, closeModal, openEditPost} = modalSlice.actions;
-export const { reducer: modalReducer } = modalSlice;
+export const {
+  openAddPostModal,
+  closeAddPostModal,
+  openModal,
+  closeModal,
+  openEditPost,
+  openProfileModal,
+  closeProfileModal
+} = modalSlice.actions;
 
+export const { reducer: modalReducer } = modalSlice;
