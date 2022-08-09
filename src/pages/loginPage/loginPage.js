@@ -1,5 +1,5 @@
 import "./login.css";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { loginImg } from "../../assets";
@@ -9,20 +9,20 @@ import { toast } from "react-toastify";
 import { useEffect } from "react";
 const LoginPage = () => {
   const dispatch = useDispatch();
-  const {  isLoading ,token} = useSelector((state) => state.auth);
+  const { isLoading, token } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const [loginData, setloginData] = useState({
     username: "",
     password: ""
   });
-  const {username,password}=loginData;
+  const { username, password } = loginData;
   const [passwordType, setPasswordType] = useState("password");
   const guestUserHandler = (e) => {
     e.preventDefault();
-    setloginData((user)=>({
-       ...user,
-        username:"adarshbalika",
-        password:"adarshBalika123"
+    setloginData((user) => ({
+      ...user,
+      username: "shivani",
+      password: "shivani@12"
     }));
   };
   const checkInputs = () => {
@@ -47,7 +47,7 @@ const LoginPage = () => {
     if (token) {
       navigate("/home");
     }
-  },[navigate,token]);
+  }, [navigate, token]);
   return (
     <div className="flex-row flex-wrap width-md">
       <img src={loginImg} alt="login-img" className="login-img " />
@@ -64,7 +64,9 @@ const LoginPage = () => {
                 name="username"
                 placeholder="username"
                 value={username}
-                onChange={(e)=>setloginData({...loginData,username:e.target.value})}
+                onChange={(e) =>
+                  setloginData({ ...loginData, username: e.target.value })
+                }
               />
               <div className="flex-row gap password-container">
                 <input
@@ -72,7 +74,9 @@ const LoginPage = () => {
                   type={passwordType}
                   placeholder="password"
                   value={password}
-                  onChange={(e)=>setloginData({...loginData,password:e.target.value})}
+                  onChange={(e) =>
+                    setloginData({ ...loginData, password: e.target.value })
+                  }
                 />
                 {passwordType === "password" ? (
                   <i
@@ -86,10 +90,7 @@ const LoginPage = () => {
                   ></i>
                 )}
               </div>
-              <button
-                className="border-none primary-btn"
-               type="submit"
-              >
+              <button className="border-none primary-btn" type="submit">
                 login {isLoading ? <i className="fa fa-spinner"></i> : ""}
               </button>
               <button className="secondary-btn" onClick={guestUserHandler}>
