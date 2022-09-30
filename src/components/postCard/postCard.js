@@ -140,7 +140,7 @@ const PostCard = ({ post }) => {
                           <div className="flex-row gap align-item-center">
                             <img
                               className="user-avatar avatar-sm"
-                              src={avatar}
+                              src={user.username===username?user.avatar:avatar}
                               alt="avatar"
                             />
                             <h3>{firstName}</h3>
