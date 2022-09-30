@@ -178,7 +178,7 @@ const PostCard = ({ post }) => {
                     <div>
                       <img
                         className="user-avatar avatar-sm"
-                        src={avatar}
+                        src={user.avatar}
                         alt="your-profile"
                       />
                     </div>
