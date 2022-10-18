@@ -1,6 +1,7 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { login, signup } from "../asyncThunk/authThunk";
 import { editProfile } from "../asyncThunk/userThunk";
+import { toast } from "react-toastify";
 const initialState = {
   user: JSON.parse(localStorage.getItem("user")) || null,
   token: localStorage.getItem("token") || null,
@@ -27,8 +28,9 @@ const authSlice = createSlice({
       state.user = action.payload.data.createdUser;
       state.token = action.payload.data.encodedToken;
     },
-    [signup.rejected]: (action) => {
-      console.error(action);
+    [signup.rejected]: (action,state) => {
+      state.error=action.payload;
+      toast.error(action.payload.data.errors[0])
     },
     [login.fulfilled]: (state, action) => {
       state.user = action.payload.data.foundUser;
@@ -40,8 +42,8 @@ const authSlice = createSlice({
       localStorage.setItem("token", action.payload.data.encodedToken);
     },
     [login.rejected]: (state, action) => {
-      console.error(action.payload);
-      console.log(current(state));
+      state.error=action.payload;
+      toast.error(action.payload.data.errors[0])
     },
     [editProfile.fulfilled]: (state, action) => {
       state.user = action.payload.data.user;

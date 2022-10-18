@@ -7,7 +7,8 @@ import {
   SignUpPage,
   ProfilePage,
   ExplorePage,
-  BookmarkPage
+  BookmarkPage,
+  FavouritePage
 } from "../pages";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -42,6 +43,14 @@ const PublicRoutes = () => {
           element={
             <PrivateRoute>
               <BookmarkPage/>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/favourite"
+          element={
+            <PrivateRoute>
+              <FavouritePage/>
             </PrivateRoute>
           }
         />
