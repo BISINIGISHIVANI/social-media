@@ -53,6 +53,16 @@ const Sidebar = () => {
             </span>
             <span
               className={`decoration-none ${
+                location?.pathname === "/favourite" ? "sidebar-active" : ""
+              }`}
+            >
+              <Link to="/favourite">
+              <i className="fa fa-heart fa-2x"></i>
+              <label>Favourites</label>
+              </Link>
+            </span>
+            <span
+              className={`decoration-none ${
                 location?.pathname === `/profile/${user.username}` ? "sidebar-active" : ""
               }`}
             >

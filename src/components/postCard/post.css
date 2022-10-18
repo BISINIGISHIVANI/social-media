@@ -170,10 +170,19 @@
   cursor: not-allowed;
   opacity: 0.6;
 }
+.display-hide{
+ visibility: hidden;
+}
+.content-md{
+  width: fit-content;
+}
+.comment-data{
+  width:5rem;
+}
 @media (max-width: 450px) {
   .post-card,
   .post-card .post-img {
-    width: 19rem;
+    width: auto;
   }
   .post-modal {
     width: 100%;

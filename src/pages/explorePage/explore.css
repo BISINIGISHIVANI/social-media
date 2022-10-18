@@ -1,0 +1,17 @@
+.btn-active{
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.position-sticky{
+    position: sticky;
+    top:0;
+    background-color: aliceblue;
+}
+.dark-mode .toggle-box{
+    background-color: var(--main-black);
+    color: white;
+}
+.dark-mode .position-sticky,.dark-mode .sidebar-active,.dark-mode .post-modal-btn{
+    background: #223;
+    color: var(--primary-color);
+}

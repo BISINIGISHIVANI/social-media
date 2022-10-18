@@ -6,4 +6,5 @@ import { BookmarkPage } from "./bookmarkPage/bookmarkPage";
 import { ProfilePage } from "./profilePage/profilePage";
 import { LoginPage } from "./loginPage/loginPage";
 import { SignUpPage } from "./signupPage/signupPage";
-export {LandingPage,ErrorPage,ExplorePage,HomePage,BookmarkPage,ProfilePage,LoginPage,SignUpPage}
+import { FavouritePage } from "./favouritePage/favouritePage";
+export {LandingPage,ErrorPage,ExplorePage,HomePage,BookmarkPage,ProfilePage,LoginPage,SignUpPage,FavouritePage}

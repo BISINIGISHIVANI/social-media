@@ -18,6 +18,9 @@ const postSlice=createSlice({
         },
         latestPosts:(state)=>{
            state.posts.sort((a,b)=>new Date(a.createdAt) - new Date(b.createdAt))
+        },
+        allPostsByFilter:(state)=>{
+            state.posts.reverse()
         }
     },
     extraReducers:{
@@ -28,13 +31,15 @@ const postSlice=createSlice({
             state.error=action.payload
         },
         [likePost.fulfilled]:(state,action)=>{
-            state.posts=action.payload.data.posts
+            state.posts=action.payload.data.posts;
+            toast.success("you liked the post")
         },
         [likePost.rejected]:(state,action)=>{
             state.error=action.payload
         },
         [dislikePost.fulfilled]:(state,action)=>{
-            state.posts=action.payload.data.posts
+            state.posts=action.payload.data.posts;
+            toast.success("post removed from likes")
         },
         [dislikePost.rejected]:(state,action)=>{
             state.error=action.payload
@@ -83,13 +88,14 @@ const postSlice=createSlice({
             toast.error(action.payload.data.errors[0])
         },
         [createPost.fulfilled]:(state,action)=>{
-            state.posts=action.payload.data.posts
+            state.posts=action.payload.data.posts;
         },
         [createPost.rejected]:(state,action)=>{
             state.error=action.payload.data
         },
         [deletePost.fulfilled]:(state,action)=>{
-            state.posts=action.payload.data.posts
+            state.posts=action.payload.data.posts;
+            toast.success("post deleted successfully")
         },
         [deletePost.rejected]:(state,action)=>{
             state.error=action.payload
@@ -103,5 +109,5 @@ const postSlice=createSlice({
         },
     }
 })
-export const {trendingPosts,latestPosts}=postSlice.actions;
+export const {trendingPosts,latestPosts,allPostsByFilter}=postSlice.actions;
 export const {reducer:postsReducer}=postSlice;

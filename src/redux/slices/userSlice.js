@@ -21,13 +21,13 @@ const userSlice=createSlice({
             state.error=action.payload.error[0]
         },
         [followUser.fulfilled]:(state,action)=>{
-            state.users=action.payload.data.users
+            state.users=action.payload.data.users;
         },
         [followUser.rejected]:(state,action)=>{
             state.error=action.payload.error[0]
         },
         [unfollowUser.fulfilled]:(state,action)=>{
-            state.error=action.payload.error[0]
+            state.users=action.payload.data.users
         },
         [unfollowUser.rejected]:(state,action)=>{
             state.error=action.payload.error[0]
