@@ -16,9 +16,12 @@ import { useState } from "react";
 import { getAllUser } from "../../redux/asyncThunk/userThunk";
 import { useEffect } from "react";
 import { dummyAvatar } from "../../assets";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 const PostCard = ({ post }) => {
   const { _id, username, content, likes, comments, postImg } = post;
   const dispatch = useDispatch();
+  const navigate=useNavigate()
   const { user, token } = useSelector((state) => state.auth);
   const { users } = useSelector((state) => state.users);
   const [openPost, setOpenPost] = useState(false);
@@ -26,7 +29,7 @@ const PostCard = ({ post }) => {
   const [addComment, setAddComment] = useState("");
   const { username: currentUser } = user;
   const [showComments, setShowComments] = useState(false);
-
+  const location=useLocation()
   const openEditPostHandler = () => {
     dispatch(openModal());
     dispatch(openEditPost(post));
@@ -55,6 +58,8 @@ const PostCard = ({ post }) => {
     if (addComment !== "") {
       dispatch(commentPost({ _id, token, commentData: addComment }));
       setAddComment("");
+    }else{
+      toast.warn("comment should not be empty")
     }
   };
   const removeCommentHandler = (commentId) => {
@@ -79,8 +84,9 @@ const PostCard = ({ post }) => {
               <div className="flex-row gap flex-space-between ">
                 <div className="flex-row gap">
                   <img
-                    className="user-avatar avatar-sm"
+                    className="user-avatar avatar-sm cursor-pointer"
                     src={avatar ? avatar : dummyAvatar}
+                    onClick={()=>navigate(`/profile/${username}`)}
                     alt="profile"
                   />
                   <div className="mg-top-xl">
@@ -125,7 +131,7 @@ const PostCard = ({ post }) => {
                 ) : null}
               </div>
               <div className="mg-xl flex-col gap">
-                <span>{content}</span>
+                <span className="content-md">{content}</span>
                 <img className="post-img flex-center" src={postImg} alt="" />
               </div>
               {showComments && (
@@ -145,8 +151,8 @@ const PostCard = ({ post }) => {
                             />
                             <h3>{firstName}</h3>
                           </div>
-                          <div className="flex-row gap margin-left">
-                            <p className="padding-md mg-left-xl">
+                          <div className={`flex-row gap margin-left ${addComment.length>15?"textarea-post":""}`}>
+                            <p className={`padding-md mg-left-xl ${addComment.length>15?"comment-data":""}`}>
                               {commentData}
                             </p>
                             <span className="close-btn">
@@ -191,7 +197,7 @@ const PostCard = ({ post }) => {
                         onChange={(e) => setAddComment(e.target.value)}
                       />
                       <button
-                        className="bd-remove padding-xl"
+                        className="bd-remove padding-xl cursor-pointer"
                         onClick={commentHandler}
                       >
                         POST
@@ -201,7 +207,7 @@ const PostCard = ({ post }) => {
                 </div>
               )}
               <div className="flex-row flex-space-between mg-xl cursor-pointer">
-                <span>
+                <span  className={`${location.pathname==="/bookmark"?"display-hide":""}`}>
                   {likes?.likedBy.find(
                     (postLiked) => postLiked.username === user.username
                   ) ? (
@@ -211,7 +217,8 @@ const PostCard = ({ post }) => {
                   )}
                   {post?.likes?.likedBy?.length}
                 </span>
-                <span onClick={toggleComment}>
+                <span className={`${location.pathname==="/bookmark"?"display-hide":""}`}
+                onClick={toggleComment}>
                   <i className="fa fa-comment-o"></i>
                   {post?.comments?.length > 0 ? comments.length : 0}
                 </span>

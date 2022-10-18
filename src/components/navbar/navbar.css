@@ -73,7 +73,6 @@
 .toggle-switch_input:checked + .toggle-switch_slider:after {
   content: "🌣";
   color: var(--mainWhite);
-  padding-left: 8px;
 }
 .search-bar {
   border: 1px solid var(--primary-color);
@@ -129,12 +128,20 @@
 }
 .dark-mode .post-card{
   color: var(--mainBlack);
+  background: var(--primary-color);
+}
+.dark-mode .add-post{
+  background-color:var(--mainBlack);
+  color: var(--mainWhite);
+}
+.dark-mode .form input{
+  color: var(--mainBlack);
 }
 .dark-mode button:hover,
 .dark-mode input,
 .dark-mode .navbar {
   background: none;
-  color: var(--primary-color);
+  color:white;
 }
 .dark-mode .navbar{
  background-color:#01070f;
