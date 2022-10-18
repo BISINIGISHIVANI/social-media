@@ -19,11 +19,7 @@ const LoginPage = () => {
   const [passwordType, setPasswordType] = useState("password");
   const guestUserHandler = (e) => {
     e.preventDefault();
-    setloginData((user) => ({
-      ...user,
-      username: "shivani",
-      password: "shivani@12"
-    }));
+    dispatch(login({username: "shivani",password: "shivani@12"}))
   };
   const checkInputs = () => {
     if (username && password) {
@@ -62,7 +58,7 @@ const LoginPage = () => {
                 className="border-none login-input"
                 type="text"
                 name="username"
-                placeholder="username"
+                placeholder="Username"
                 value={username}
                 onChange={(e) =>
                   setloginData({ ...loginData, username: e.target.value })
@@ -72,7 +68,7 @@ const LoginPage = () => {
                 <input
                   className="border-none login-password"
                   type={passwordType}
-                  placeholder="password"
+                  placeholder="Password"
                   value={password}
                   onChange={(e) =>
                     setloginData({ ...loginData, password: e.target.value })
@@ -94,11 +90,11 @@ const LoginPage = () => {
                 login {isLoading ? <i className="fa fa-spinner"></i> : ""}
               </button>
               <button className="secondary-btn" onClick={guestUserHandler}>
-                Add guest credentials
+                login as guest
               </button>
             </div>
             <p className="padding-sm decoration-none">
-              Join us Today ?{" "}
+              Join us today ?{" "}
               <Link to="/signup">
                 <span className="cursor-pointer">SignUp</span>
               </Link>

@@ -60,7 +60,7 @@ const SignUpPage = () => {
                   className="border-none login-input"
                   type="text"
                   name="firstName"
-                  placeholder=" first name"
+                  placeholder=" First Name"
                   value={newUser.firstName}
                   onChange={inputHandler}
                 />
@@ -68,7 +68,7 @@ const SignUpPage = () => {
                   className="border-none login-input"
                   type="text"
                   name="lastName"
-                  placeholder="last name"
+                  placeholder="Last Name"
                   value={newUser.lastName}
                   onChange={inputHandler}
                 />
@@ -77,7 +77,7 @@ const SignUpPage = () => {
                 className="border-none login-input"
                 type="email"
                 name="email"
-                placeholder="email"
+                placeholder="Email"
                 value={newUser.email}
                 onChange={inputHandler}
               />
@@ -85,7 +85,7 @@ const SignUpPage = () => {
                 className="border-none login-input"
                 type="text"
                 name="username"
-                placeholder="username"
+                placeholder="Username"
                 value={newUser.username}
                 onChange={inputHandler}
               />
@@ -94,7 +94,7 @@ const SignUpPage = () => {
                   className="border-none login-password"
                   type={passwordType}
                   name="password"
-                  placeholder="password"
+                  placeholder="Password"
                   value={newUser.password}
                   onChange={inputHandler}
                 />

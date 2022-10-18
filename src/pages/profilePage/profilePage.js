@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { getAllPosts } from "../../redux/asyncThunk/postThunk";
-import { getAllUser } from "../../redux/asyncThunk/userThunk";
+import { followUser, getAllUser, unfollowUser } from "../../redux/asyncThunk/userThunk";
 import { PostCard } from "../../components";
 import { ProfileModal } from "../../components/profileModal/profileModal";
 import { SuggestUser } from "../../components/suggestUser/suggestUsers";
@@ -11,7 +11,7 @@ import { ProfileCard } from "../../components/profileCard/profileCard";
 const ProfilePage = () => {
   const dispatch = useDispatch();
   const { username } = useParams();
-  const { user } = useSelector((state) => state.auth);
+  const { user,token } = useSelector((state) => state.auth);
   const { users } = useSelector((state) => state.users);
   const { posts } = useSelector((state) => state.posts);
   const myposts = posts.filter((post) => post.username === username);
@@ -53,6 +53,16 @@ const ProfilePage = () => {
                           </h1>
                           <p> @{username}</p>
                         </div>
+                        {  !followers.some(
+                        (existUser) => 
+                        existUser.username === user.username)?
+                           <span className="cursor-pointer"
+                           onClick={()=>dispatch(followUser({_id,token}))}
+                           >follow</span>:
+                           <span className="cursor-pointer"
+                           onClick={()=>dispatch(unfollowUser({_id,token}))}
+                           >unfollow</span>
+                        }
                       </div>
                     ) : (
                       <ProfileCard />
