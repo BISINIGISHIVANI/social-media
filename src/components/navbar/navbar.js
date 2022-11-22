@@ -8,12 +8,14 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [filteredData, setFilteredData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+ 
   const searchUserHandler = (e, data) => {
     let text = e.target.value.toLowerCase().trim();
     let textLength = text.length;
     let result = data.filter((user) =>
       user.username.toLowerCase().substring(0, textLength).includes(text)
     );
+
     if (textLength > 0) {
       result.length > 0
         ? setFilteredData(result)

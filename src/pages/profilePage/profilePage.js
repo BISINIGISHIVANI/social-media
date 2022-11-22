@@ -85,7 +85,7 @@ const ProfilePage = () => {
             <hr />
             <div className="flex-col gap">
               {myposts.length > 0 ? (
-                myposts.map((post) => <PostCard key={post._id} post={post} />)
+                myposts.reverse().map((post) => <PostCard key={post._id} post={post} />)
               ) : (
                 <h2>No posts yet,start writing posts..</h2>
               )}

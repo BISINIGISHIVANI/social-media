@@ -131,7 +131,10 @@ const PostCard = ({ post }) => {
                 ) : null}
               </div>
               <div className="mg-xl flex-col gap">
-                <span className="content-md">{content}</span>
+                <span className="content-md"
+                style={{width:"35ch !important"}}>
+                  {content}
+                </span>
                 <img className="post-img flex-center" src={postImg} alt="" />
               </div>
               {showComments && (

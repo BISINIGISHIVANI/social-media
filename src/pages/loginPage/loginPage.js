@@ -45,10 +45,13 @@ const LoginPage = () => {
     }
   }, [navigate, token]);
   return (
-    <div className="flex-row flex-wrap width-md">
+    <div className="flex-row flex-wrap width-md decoration-none">
       <img src={loginImg} alt="login-img" className="login-img " />
+      <Link to="/">
+          <h2 className="cursor-pointer main-heading"> ✦꙳ Social Explore </h2>
+        </Link>
       <div className="login">
-        <div className="form">
+        <div className="form decoration-none">
           <form className="login-form" onSubmit={loginHandler}>
             <span>
               <i className="fa fa-lock fa-3x"></i>
