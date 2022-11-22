@@ -174,7 +174,7 @@
  visibility: hidden;
 }
 .content-md{
-  width: fit-content;
+  width: 45ch;
 }
 .comment-data{
   width:5rem;
@@ -186,6 +186,9 @@
   }
   .post-modal {
     width: 100%;
+  }
+  .content-md{
+    width: 25ch;
   }
 }
 

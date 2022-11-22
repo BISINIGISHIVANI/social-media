@@ -24,7 +24,7 @@ const BookmarkPage = () => {
             <hr />
             <div className="flex-col gap mg-top-xl">
               {bookmarks.length > 0 ? (
-                bookmarks.map((post) => <PostCard key={post._id} post={post} />)
+                bookmarks.reverse().map((post) => <PostCard key={post._id} post={post} />)
               ) : (
                 <div className="flex-col flex-center gap">
                   <h2>Start bookmark posts</h2>

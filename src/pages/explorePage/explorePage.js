@@ -5,12 +5,17 @@ import { getAllPosts } from "../../redux/asyncThunk/postThunk";
 import { allPostsByFilter, latestPosts, trendingPosts } from "../../redux/slices/postSlice";
 import { SuggestUser } from "../../components/suggestUser/suggestUsers";
 import "./explore.css"
-import { useNavigate } from "react-router-dom";
 const ExplorePage = () => {
   const dispatch = useDispatch();
-  const navigate=useNavigate()
   const { posts } = useSelector((state) => state.posts);
   const [isLabel,setIsLabel]=useState("All");
+  const scrollToTop=()=>{
+    let scrolled=document.querySelector(".explore");
+    scrolled.scrollTo({
+      top: 0, 
+      behavior: 'smooth'
+    });
+  }
   useEffect(() => {
     dispatch(getAllPosts());
   }, [dispatch]);
@@ -22,7 +27,7 @@ const ExplorePage = () => {
           <Sidebar />
         </div>
         <section className="flex-row main-content">
-          <section className="content flex-col gap">
+          <section className="content flex-col gap explore">
             <div className="flex-col gap">
               <div className="flex-row gap position-sticky padding-sm cursor-pointer">
                 <h3 
@@ -39,9 +44,12 @@ const ExplorePage = () => {
               { [...posts].reverse().map((post) => (
                 <PostCard key={post._id} post={post} />
               ))}
-              <span className="flex-row align-end"onClick={()=>navigate("/")}>
+              <span className="flex-row align-end"
+              onClick={()=>scrollToTop()
+              }>
               <i className="fa fa-chevron-circle-up fa-2x cursor-pointer" 
-              aria-hidden="true"></i>
+              aria-hidden="true"
+              ></i>
               </span>
             </div>
           </section>

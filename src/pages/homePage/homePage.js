@@ -28,7 +28,7 @@ const HomePage = () => {
               <h2>Welcome back!</h2>
               <hr />
               {userPosts.length > 0 ? (
-                userPosts.map((post) => <PostCard key={post._id} post={post} />)
+                userPosts.reverse().map((post) => <PostCard key={post._id} post={post} />)
               ) : (
                 <div className="flex-col flex-center gap">
                   <h2>Start creating posts...</h2>

@@ -46,8 +46,11 @@ const SignUpPage = () => {
     }
   }, [user, navigate]);
   return (
-    <div className="flex-row flex-wrap width-md">
+    <div className="flex-row flex-wrap width-md  decoration-none">
       <img src={loginImg} alt="login-img" className="login-img " />
+      <Link to="/">
+          <h2 className="cursor-pointer main-heading padding-sm"> ✦꙳ Social Explore </h2>
+      </Link>
       <div className="login">
         <div className="form">
           <form className="login-form" onSubmit={signupHandler}>
